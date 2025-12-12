@@ -50,7 +50,7 @@ const Shop: React.FC = () => {
                  onChange={(e) => setSearchParams(e.target.value === 'all' ? {} : { category: e.target.value })}
                  className="w-full pl-10 pr-8 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-tribal-500 appearance-none cursor-pointer"
                >
-                 <option value="all">All Categories</option>
+                 <option value="all">{t('allCategories')}</option>
                  {CATEGORIES.map(cat => (
                    <option key={cat.id} value={cat.id}>{cat.label[language]}</option>
                  ))}
@@ -71,8 +71,8 @@ const Shop: React.FC = () => {
              <div className="text-gray-400 mb-4">
                <Search size={48} className="mx-auto opacity-50" />
              </div>
-             <h3 className="text-lg font-medium text-gray-900">No products found</h3>
-             <p className="text-gray-500">Try adjusting your search or filters.</p>
+             <h3 className="text-lg font-medium text-gray-900">{t('noProducts')}</h3>
+             <p className="text-gray-500">{t('tryAdjusting')}</p>
           </div>
         )}
       </div>

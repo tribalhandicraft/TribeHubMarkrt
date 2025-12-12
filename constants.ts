@@ -12,6 +12,7 @@ export const CATEGORIES: { id: Category; label: Translation[string] }[] = [
 ];
 
 export const TRANSLATIONS: Translation = {
+  // General
   appName: { en: 'TribalHeritage', hi: 'जनजातीय धरोहर', mr: 'आदिवासी वारसा' },
   search: { en: 'Search for products...', hi: 'उत्पाद खोजें...', mr: 'उत्पादने शोधा...' },
   login: { en: 'Login', hi: 'लॉग इन', mr: 'लॉग इन' },
@@ -25,17 +26,185 @@ export const TRANSLATIONS: Translation = {
   checkout: { en: 'Checkout', hi: 'चेकआउट', mr: 'चेकआउट' },
   total: { en: 'Total', hi: 'कुल', mr: 'एकूण' },
   addToCart: { en: 'Add to Cart', hi: 'कार्ट में डालें', mr: 'कार्टमध्ये टाका' },
-  buyNow: { en: 'Buy Now', hi: 'अभी खरीदें', mr: 'आत्ता खरेदी करा' },
+  buyNow: { en: 'Order Now', hi: 'अभी ऑर्डर करें', mr: 'आत्ता ऑर्डर करा' },
   seller: { en: 'Seller', hi: 'विक्रेता', mr: 'विक्रेता' },
   description: { en: 'Description', hi: 'विवरण', mr: 'वर्णन' },
   aiHelp: { en: 'AI Magic Help', hi: 'AI मदद', mr: 'AI मदत' },
   generating: { en: 'Generating...', hi: 'बना रहा है...', mr: 'तयार करत आहे...' },
   welcome: { en: 'Welcome', hi: 'स्वागत है', mr: 'स्वागत आहे' },
+  
+  // Reviews
+  reviews: { en: 'Reviews', hi: 'समीक्षाएं', mr: 'प्रतिक्रिया' },
+  writeReview: { en: 'Write a Review', hi: 'समीक्षा लिखें', mr: 'प्रतिक्रिया लिहा' },
+  submitReview: { en: 'Submit Review', hi: 'समीक्षा जमा करें', mr: 'प्रतिक्रिया सबमिट करा' },
+  rating: { en: 'Rating', hi: 'रेटिंग', mr: 'रेटिंग' },
+  noReviews: { en: 'No reviews yet.', hi: 'अभी तक कोई समीक्षा नहीं।', mr: 'अद्याप कोणतीही प्रतिक्रिया नाही.' },
+  loginToReview: { en: 'Please login to write a review.', hi: 'समीक्षा लिखने के लिए कृपया लॉगिन करें।', mr: 'प्रतिक्रिया देण्यासाठी कृपया लॉग इन करा.' },
+  
+  // Home
   heroTitle: { en: 'Authentic Tribal Treasures', hi: 'प्रामाणिक आदिवासी खजाने', mr: 'अस्सल आदिवासी ठेवा' },
   heroSubtitle: { en: 'Direct from artisans to your home.', hi: 'कारीगरों से सीधे आपके घर तक।', mr: 'कारागीरांकडून थेट तुमच्या घरी.' },
+  discoverSpirit: { en: 'Discover the Spirit of India', hi: 'भारत की आत्मा को खोजें', mr: 'भारताचा आत्मा शोधा' },
+  learnMore: { en: 'Learn More', hi: 'और जानें', mr: 'अधिक जाणून घ्या' },
+  exploreCategories: { en: 'Explore Categories', hi: 'श्रेणियाँ खोजें', mr: 'श्रेण्या एक्सप्लोर करा' },
+  featuredItems: { en: 'Featured Items', hi: 'प्रमुख वस्तुएं', mr: 'वैशिष्ट्यपूर्ण वस्तू' },
+  viewAll: { en: 'View All', hi: 'सभी देखें', mr: 'सर्व पहा' },
+  meetArtisans: { en: 'Meet Our Artisans', hi: 'हमारे कारीगरों से मिलें', mr: 'आमच्या कारागीरांना भेटा' },
+  artisanSubtitle: { en: 'The Hands Behind the Heritage', hi: 'विरासत के पीछे के हाथ', mr: 'वारशामागील हात' },
+  aboutTitle: { en: 'Our Story', hi: 'हमारी कहानी', mr: 'आमची कहाणी' },
+  aboutSubtitle: { en: 'Preserving Heritage, Empowering Lives', hi: 'विरासत का संरक्षण, जीवन सशक्तिकरण', mr: 'वारसा जतन, जीवन सक्षमीकरण' },
+  aboutDesc: { 
+    en: 'We connect authentic tribal artisans directly with the world, ensuring fair trade and keeping ancient art forms alive.', 
+    hi: 'हम असली आदिवासी कारीगरों को सीधे दुनिया से जोड़ते हैं, निष्पक्ष व्यापार सुनिश्चित करते हैं और प्राचीन कला रूपों को जीवित रखते हैं।',
+    mr: 'आम्ही अस्सल आदिवासी कारागीरांना थेट जगाशी जोडतो, वाजवी व्यापार सुनिश्चित करतो आणि प्राचीन कला प्रकार जिवंत ठेवतो.'
+  },
+  artisanCount: { en: 'Artisans', hi: 'कारीगर', mr: 'कारागीर' },
+  productsCount: { en: 'Authentic Products', hi: 'असली उत्पाद', mr: 'अस्सल उत्पादने' },
+  testimonialQuote: { en: "This platform has given my art a new life and my family a steady income.", hi: "इस मंच ने मेरी कला को नया जीवन और मेरे परिवार को स्थिर आय दी है।", mr: "या प्लॅटफॉर्मने माझ्या कलेला नवीन जीवन आणि माझ्या कुटुंबाला स्थिर उत्पन्न दिले आहे." },
+  testimonialAuthor: { en: "- Lakshmi Devi, Madhubani Artist", hi: "- लक्ष्मी देवी, मधुबनी कलाकार", mr: "- लक्ष्मी देवी, मधुबनी कलाकार" },
+
+  // About Page
+  aboutUs: { en: 'About Us', hi: 'हमारे बारे में', mr: 'आमच्याबद्दल' },
+  aboutHeaderSub: { en: 'Connecting the world with the soulful heritage of indigenous artisans.', hi: 'दुनिया को स्वदेशी कारीगरों की आत्मीय विरासत से जोड़ना।', mr: 'जगाला स्थानिक कारागीरांच्या आत्मिक वारशाशी जोडणे.' },
+  founderMessage: { en: 'Founder\'s Message', hi: 'संस्थापक का संदेश', mr: 'संस्थापकाचा संदेश' },
+  founderBio1: { en: "TribalHeritage was born from a simple journey to the heart of Bastar, where I witnessed art that breathed history and culture.", hi: "ट्राइबल हेरिटेज का जन्म बस्तर के दिल की एक साधारण यात्रा से हुआ, जहां मैंने इतिहास और संस्कृति से सांस लेती कला देखी।", mr: "ट्राइबल हेरिटेजचा जन्म बस्तरच्या हृदयापर्यंतच्या एका साध्या प्रवासातून झाला, जिथे मी इतिहास आणि संस्कृतीचा श्वास घेणारी कला पाहिली." },
+  founderBio2: { en: "Our mission is not just to sell products, but to tell stories. Every artifact on this platform carries the soul of its creator.", hi: "हमारा मिशन सिर्फ उत्पाद बेचना नहीं, बल्कि कहानियां सुनाना है। इस मंच पर हर कलाकृति अपने निर्माता की आत्मा को वहन करती है।", mr: "आमचे ध्येय केवळ उत्पादने विकणे नाही, तर कथा सांगणे आहे. या प्लॅटफॉर्मवरील प्रत्येक कलाकृती तिच्या निर्मात्याचा आत्मा वाहून नेते." },
+  founderRole: { en: "Founder & CEO", hi: "संस्थापक और सीईओ", mr: "संस्थापक आणि सीईओ" },
+  ourTeam: { en: 'Our Team', hi: 'हमारी टीम', mr: 'आमची टीम' },
+  roleOperations: { en: "Head of Operations", hi: "संचालन प्रमुख", mr: "ऑपरेशन्स प्रमुख" },
+  roleTech: { en: "Tech Lead", hi: "तकनीकी प्रमुख", mr: "टेक लीड" },
+  roleCommunity: { en: "Community Manager", hi: "समुदाय प्रबंधक", mr: "कम्युनिटी मॅनेजर" },
+  roleMarketing: { en: "Head of Marketing", hi: "विपणन प्रमुख", mr: "विपणन प्रमुख" },
+  contactUs: { en: 'Contact Us', hi: 'संपर्क करें', mr: 'संपर्क साधा' },
+  emailLabel: { en: "Email Us", hi: "हमें ईमेल करें", mr: "आम्हाला ईमेल करा" },
+  callLabel: { en: "Call Us", hi: "हमें कॉल करें", mr: "आम्हाला कॉल करा" },
+  visitLabel: { en: "Visit Us", hi: "हमसे मिलें", mr: "आम्हाला भेट द्या" },
+  followUs: { en: 'Follow Us', hi: 'हमे फॉलो करें', mr: 'आम्हाला फॉलो करा' },
+  socialText: { en: "Join our community on social media for daily updates on new artisans and products.", hi: "नए कारीगरों और उत्पादों पर दैनिक अपडेट के लिए सोशल मीडिया पर हमारे समुदाय से जुड़ें।", mr: "नवीन कारागीर आणि उत्पादनांच्या दैनंदिन अपडेट्ससाठी सोशल मीडियावर आमच्या समुदायात सामील व्हा." },
+  copyright: { en: "© 2024 TribalHeritage Market. All rights reserved.", hi: "© 2024 ट्राइबल हेरिटेज मार्केट। सर्वाधिकार सुरक्षित।", mr: "© 2024 ट्राइबल हेरिटेज मार्केट. सर्व हक्क राखीव." },
+
+  // Cart & Order
+  secureCheckout: { en: "Secure Checkout", hi: "सुरक्षित चेकआउट", mr: "सुरक्षित चेकआउट" },
   emptyCart: { en: 'Your cart is empty', hi: 'आपकी कार्ट खाली है', mr: 'तुमची कार्ट रिकामी आहे' },
+  goToShop: { en: "Go to Shop", hi: "दुकान पर जाएं", mr: "दुकानदार जा" },
+  qty: { en: "Qty", hi: "मात्रा", mr: "प्रमाण" },
+  shippingAddress: { en: "Shipping Address", hi: "शिपिंग पता", mr: "शिपिंग पत्ता" },
+  fullName: { en: "Full Name", hi: "पूरा नाम", mr: "पूर्ण नाव" },
+  addressLabel: { en: "Address", hi: "पता", mr: "पत्ता" },
+  city: { en: "City", hi: "शहर", mr: "शहर" },
+  pincode: { en: "Pincode", hi: "पिन कोड", mr: "पिन कोड" },
+  phone: { en: "Phone", hi: "फ़ोन", mr: "फोन" },
+  orderSummary: { en: "Order Summary", hi: "ऑर्डर सारांश", mr: "ऑर्डर सारांश" },
+  subtotal: { en: "Subtotal", hi: "उप-योग", mr: "उप-बेरीज" },
+  gst: { en: "GST (5%)", hi: "जीएसटी (5%)", mr: "जीएसटी (5%)" },
+  shipping: { en: "Shipping", hi: "शिपिंग", mr: "शिपिंग" },
+  free: { en: "Free", hi: "मुफ़्त", mr: "मोफत" },
   placeOrder: { en: 'Place Order', hi: 'ऑर्डर करें', mr: 'ऑर्डर द्या' },
+  payPlaceOrder: { en: "Pay & Place Order", hi: "भुगतान करें और ऑर्डर दें", mr: "पेमेंट करा आणि ऑर्डर द्या" },
+  secureMsg: { en: "Secure SSL Encryption. All cards accepted.", hi: "सुरक्षित एसएसएल एन्क्रिप्शन। सभी कार्ड स्वीकार्य।", mr: "सुरक्षित SSL एन्क्रिप्शन. सर्व कार्ड स्वीकारले जातात." },
   orderSuccess: { en: 'Order Placed Successfully!', hi: 'ऑर्डर सफलतापूर्वक दी गई!', mr: 'ऑर्डर यशस्वीरित्या दिली गेली!' },
+  thankYouOrder: { en: "Thank you for supporting tribal artisans. Your order ID is", hi: "आदिवासी कारीगरों का समर्थन करने के लिए धन्यवाद। आपकी ऑर्डर आईडी है", mr: "आदिवासी कारागीरांना पाठिंबा दिल्याबद्दल धन्यवाद. तुमचा ऑर्डर आयडी आहे" },
+  estDelivery: { en: "Estimated Delivery", hi: "अनुमानित डिलीवरी", mr: "अंदाजे वितरण" },
+  courier: { en: "Courier", hi: "कूरियर", mr: "कुरिअर" },
+  continueShopping: { en: "Continue Shopping", hi: "खरीदारी जारी रखें", mr: "खरेदी सुरू ठेवा" },
+  confirmOrderCheck: { en: "I confirm that the order details are correct.", hi: "मैं पुष्टि करता हूं कि ऑर्डर विवरण सही हैं।", mr: "मी ऑर्डर तपशील बरोबर असल्याची पुष्टी करतो." },
+  fillFieldsErr: { en: "Please fill all required fields and confirm the order.", hi: "कृपया सभी आवश्यक फ़ील्ड भरें और ऑर्डर की पुष्टि करें।", mr: "कृपया सर्व आवश्यक फील्ड भरा आणि ऑर्डरची पुष्टी करा." },
+  paymentMethod: { en: "Payment Method", hi: "भुगतान का तरीका", mr: "पेमेंट पद्धत" },
+  upi: { en: "UPI (Google Pay, PhonePe)", hi: "यूपीआई (Google Pay, PhonePe)", mr: "UPI (Google Pay, PhonePe)" },
+  card: { en: "Credit / Debit Card", hi: "क्रेडिट / डेबिट कार्ड", mr: "क्रेडिट / डेबिट कार्ड" },
+  netBanking: { en: "Net Banking", hi: "नेट बैंकिंग", mr: "नेट बँकिंग" },
+  cod: { en: "Cash on Delivery", hi: "कैश ऑन डिलीवरी", mr: "कॅश ऑन डिलिव्हरी" },
+  cancelOrder: { en: "Cancel Order", hi: "ऑर्डर रद्द करें", mr: "ऑर्डर रद्द करा" },
+  orderCancelled: { en: "Order Cancelled", hi: "ऑर्डर रद्द कर दिया गया", mr: "ऑर्डर रद्द केली" },
+  cancelled: { en: "Cancelled", hi: "रद्द", mr: "रद्द" },
+  cardNumber: { en: "Card Number", hi: "कार्ड नंबर", mr: "कार्ड क्रमांक" },
+  expiry: { en: "Expiry (MM/YY)", hi: "समाप्ति (MM/YY)", mr: "मुदत संपणे (MM/YY)" },
+  cvv: { en: "CVV", hi: "सीवीवी", mr: "CVV" },
+  vpa: { en: "UPI ID / VPA", hi: "यूपीआई आईडी", mr: "UPI आयडी" },
+
+  // Login Page
+  welcomeBack: { en: "Welcome Back", hi: "वापसी पर स्वागत है", mr: "परत स्वागत आहे" },
+  signInSub: { en: "Sign in to access the tribal heritage marketplace.", hi: "आदिवासी विरासत बाज़ार तक पहुँचने के लिए साइन इन करें।", mr: "आदिवासी वारसा बाजारपेठेत प्रवेश करण्यासाठी साइन इन करा." },
+  chooseRole: { en: "Choose your role", hi: "अपनी भूमिका चुनें", mr: "तुमची भूमिका निवडा" },
+  customerRole: { en: "Customer", hi: "ग्राहक", mr: "ग्राहक" },
+  customerDesc: { en: "I want to buy authentic products", hi: "मैं असली उत्पाद खरीदना चाहता हूँ", mr: "मला अस्सल उत्पादने खरेदी करायची आहेत" },
+  producerRole: { en: "Producer / Artisan", hi: "निर्माता / कारीगर", mr: "निर्माता / कारागीर" },
+  producerDesc: { en: "I want to sell my creations", hi: "मैं अपनी कृतियां बेचना चाहता हूँ", mr: "मला माझ्या कलाकृती विकायच्या आहेत" },
+  adminRole: { en: "Administrator", hi: "प्रशासक", mr: "प्रशासक" },
+  adminDesc: { en: "Manage platform settings", hi: "प्लेटफ़ॉर्म सेटिंग प्रबंधित करें", mr: "प्लॅटफॉर्म सेटिंग्ज व्यवस्थापित करा" },
+  registerLink: { en: "New Artisan? Register here", hi: "नए कारीगर? यहाँ रजिस्टर करें", mr: "नवीन कारागीर? येथे नोंदणी करा" },
+  mobileNum: { en: "Mobile Number", hi: "मोबाइल नंबर", mr: "मोबाईल नंबर" },
+  sendOtp: { en: "Send OTP", hi: "ओटीपी भेजें", mr: "OTP पाठवा" },
+  enterOtp: { en: "Enter OTP", hi: "ओटीपी दर्ज करें", mr: "OTP प्रविष्ट करा" },
+  verifyLogin: { en: "Verify & Login", hi: "सत्यापित करें और लॉगिन करें", mr: "पडताळणी करा आणि लॉग इन करा" },
+  invalidMobile: { en: "Please enter a valid 10-digit mobile number", hi: "कृपया एक मान्य 10-अंकीय मोबाइल नंबर दर्ज करें", mr: "कृपया वैध 10-अंकी मोबाईल नंबर प्रविष्ट करा" },
+  invalidOtp: { en: "Invalid OTP. Please try again.", hi: "अमान्य ओटीपी। कृपया पुनः प्रयास करें।", mr: "अवैध OTP. कृपया पुन्हा प्रयत्न करा." },
+  otpSentMsg: { en: "OTP sent to", hi: "ओटीपी भेजा गया", mr: "OTP पाठवले" },
+  backToRoles: { en: "Back to Role Selection", hi: "भूमिका चयन पर वापस जाएं", mr: "भूमिका निवडीवर परत जा" },
+
+  // Producer Register
+  artisanRegTitle: { en: "Artisan Registration", hi: "कारीगर पंजीकरण", mr: "कारागीर नोंदणी" },
+  artisanRegSub: { en: "Join our community and showcase your heritage to the world.", hi: "हमारे समुदाय में शामिल हों और दुनिया को अपनी विरासत दिखाएं।", mr: "आमच्या समुदायात सामील व्हा आणि जगाला तुमचा वारसा दाखवा." },
+  contactLabel: { en: "Contact Number", hi: "संपर्क नंबर", mr: "संपर्क क्रमांक" },
+  artTypeLabel: { en: "Type of Art", hi: "कला का प्रकार", mr: "कलेचा प्रकार" },
+  photoLabel: { en: "Your Photo (Optional)", hi: "आपकी फोटो (वैकल्पिक)", mr: "तुमचा फोटो (पर्यायी)" },
+  uploadPhoto: { en: "Upload photos", hi: "फोटो अपलोड करें", mr: "फोटो अपलोड करा" },
+  registerLogin: { en: "Register & Login", hi: "रजिस्टर और लॉगिन", mr: "नोंदणी करा आणि लॉग इन करा" },
+
+  // Admin Dashboard
+  adminDashboard: { en: "Admin Dashboard", hi: "एडमिन डैशबोर्ड", mr: "प्रशासक डॅशबोर्ड" },
+  adminSub: { en: "Manage orders, payments, and artisans", hi: "ऑर्डर, भुगतान और कारीगरों का प्रबंधन करें", mr: "ऑर्डर, पेमेंट आणि कारागीर व्यवस्थापित करा" },
+  orders: { en: "Orders", hi: "ऑर्डर", mr: "ऑर्डर्स" },
+  producers: { en: "Producers", hi: "निर्माता", mr: "उत्पादक" },
+  bankDetails: { en: "Bank Details", hi: "बैंक विवरण", mr: "बँक तपशील" },
+  pendingOrders: { en: "Pending Orders", hi: "लंबित ऑर्डर", mr: "प्रलंबित ऑर्डर्स" },
+  completedOrders: { en: "Completed", hi: "पूर्ण", mr: "पूर्ण" },
+  orderManagement: { en: "Order Management", hi: "ऑर्डर प्रबंधन", mr: "ऑर्डर व्यवस्थापन" },
+  noOrders: { en: "No orders received yet.", hi: "अभी तक कोई ऑर्डर नहीं मिला।", mr: "अद्याप कोई ऑर्डर प्राप्त झालेली नाही." },
+  process: { en: "Process", hi: "प्रक्रिया", mr: "प्रक्रिया" },
+  ship: { en: "Ship Order", hi: "ऑर्डर भेजें", mr: "ऑर्डर पाठवा" },
+  complete: { en: "Complete", hi: "पूर्ण करें", mr: "पूर्ण करा" },
+  viewDetails: { en: "View Details", hi: "विवरण देखें", mr: "तपशील पहा" },
+  regArtisans: { en: "Registered Artisans & Producers", hi: "पंजीकृत कारीगर और निर्माता", mr: "नोंदणीकृत कारागीर आणि उत्पादक" },
+  noProducers: { en: "No producers registered yet.", hi: "अभी तक कोई निर्माता पंजीकृत नहीं है।", mr: "अद्याप कोणताही उत्पादक नोंदणीकृत नाही." },
+  verified: { en: "Verified", hi: "सत्यापित", mr: "सत्यापित" },
+  blockUser: { en: "Block User", hi: "उपयोगकर्ता को ब्लॉक करें", mr: "वापरकर्त्यास ब्लॉक करा" },
+  bankTitle: { en: "Admin Bank Account Details", hi: "एडमिन बैंक खाता विवरण", mr: "प्रशासक बँक खाते तपशील" },
+  bankSub: { en: "Configure the account where customer payments will be received.", hi: "उस खाते को कॉन्फ़िगर करें जहां ग्राहक भुगतान प्राप्त होंगे।", mr: "ते खाते कॉन्फिगर करा जिथे ग्राहकांची पेमेंट्स प्राप्त होतील." },
+  accHolder: { en: "Account Holder Name", hi: "खाता धारक का नाम", mr: "खातेदाराचे नाव" },
+  bankName: { en: "Bank Name", hi: "बैंक का नाम", mr: "बँकेचे नाव" },
+  ifsc: { en: "IFSC Code", hi: "आईएफएससी कोड", mr: "IFSC कोड" },
+  accNumber: { en: "Account Number", hi: "खाता संख्या", mr: "खाते क्रमांक" },
+  optional: { en: "Optional", hi: "वैकल्पिक", mr: "पर्यायी" },
+  bankUpi: { en: "UPI ID (For Quick Payments)", hi: "यूपीआई आईडी", mr: "UPI आयडी" },
+  saveDetails: { en: "Save Details", hi: "विवरण सहेजें", mr: "तपशील जतन करा" },
+  saving: { en: "Saving...", hi: "सहेज रहा है...", mr: "सेव्ह करत आहे..." },
+
+  // Shop Page
+  allCategories: { en: "All Categories", hi: "सभी श्रेणियाँ", mr: "सर्व श्रेण्या" },
+  noProducts: { en: "No products found", hi: "कोई उत्पाद नहीं मिला", mr: "कोणतेही उत्पादने सापडली नाहीत" },
+  tryAdjusting: { en: "Try adjusting your search or filters.", hi: "अपनी खोज या फ़िल्टर समायोजित करने का प्रयास करें।", mr: "तुमचा शोध किंवा फिल्टर समायोजित करण्याचा प्रयत्न करा." },
+
+  // Producer Dashboard
+  welcomeBackUser: { en: "Welcome back", hi: "वापसी पर स्वागत है", mr: "परत स्वागत आहे" },
+  prodTitle: { en: "Product Title", hi: "उत्पाद शीर्षक", mr: "उत्पादन शीर्षक" },
+  price: { en: "Price (₹)", hi: "कीमत (₹)", mr: "किंमत (₹)" },
+  stock: { en: "Stock", hi: "स्टॉक", mr: "साठा" },
+  category: { en: "Category", hi: "श्रेणी", mr: "श्रेणी" },
+  prodImage: { en: "Product Images", hi: "उत्पाद छवियां", mr: "उत्पादन प्रतिमा" },
+  uploadFile: { en: "Upload photos", hi: "फ़ाइल अपलोड करें", mr: "फाइल अपलोड करा" },
+  publishProd: { en: "Publish Product", hi: "उत्पाद प्रकाशित करें", mr: "उत्पादन प्रकाशित करा" },
+  myListings: { en: "My Listings", hi: "मेरी लिस्टिंग", mr: "माझी लिस्टिंग" },
+  noListings: { en: "You haven't listed any products yet.", hi: "आपने अभी तक कोई उत्पाद सूचीबद्ध नहीं किया है।", mr: "तुम्ही अद्याप कोणतीही उत्पादने सूचीबद्ध केलेली नाहीत." },
+
+  // Notification
+  newOrder: { en: "New Order Received!", hi: "नया ऑर्डर प्राप्त हुआ!", mr: "नवीन ऑर्डर प्राप्त झाली!" },
+  pending: { en: "Pending", hi: "लंबित", mr: "प्रलंबित" },
+  viewOrders: { en: "View Orders", hi: "ऑर्डर देखें", mr: "ऑर्डर पहा" },
+  dismiss: { en: "Dismiss", hi: "खारिज करें", mr: "रद्द करा" },
+  
+  // Navbar
+  admin: { en: "Admin", hi: "एडमिन", mr: "एडमिन" },
 };
 
 export const MOCK_PRODUCTS: Product[] = [
@@ -46,8 +215,11 @@ export const MOCK_PRODUCTS: Product[] = [
     description: 'Authentic hand-painted Warli art depicting a village festival. Made with natural rice paste on treated canvas.',
     price: 1500,
     category: 'paintings',
-    image: 'https://picsum.photos/400/400?random=1',
+    images: ['https://picsum.photos/400/400?random=1', 'https://picsum.photos/400/400?random=11'],
     stock: 5,
+    reviews: [
+      { id: 'r1', userId: 'c1', userName: 'Priya S.', rating: 5, comment: 'Absolutely beautiful craftsmanship!', date: '2023-11-15' }
+    ]
   },
   {
     id: '2',
@@ -56,8 +228,9 @@ export const MOCK_PRODUCTS: Product[] = [
     description: 'Set of 3 professional bamboo flutes tuned to different scales. Handcrafted by tribal artisans.',
     price: 850,
     category: 'instruments',
-    image: 'https://picsum.photos/400/400?random=2',
+    images: ['https://picsum.photos/400/400?random=2', 'https://picsum.photos/400/400?random=12'],
     stock: 12,
+    reviews: []
   },
   {
     id: '3',
@@ -66,8 +239,9 @@ export const MOCK_PRODUCTS: Product[] = [
     description: 'Ancient lost-wax casting technique used to create this stunning brass tribal horse statue.',
     price: 3200,
     category: 'statues',
-    image: 'https://picsum.photos/400/400?random=3',
+    images: ['https://picsum.photos/400/400?random=3'],
     stock: 2,
+    reviews: []
   },
   {
     id: '4',
@@ -76,7 +250,10 @@ export const MOCK_PRODUCTS: Product[] = [
     description: 'Pure, organic wild honey collected from the deep forests. No added sugar or preservatives.',
     price: 450,
     category: 'fruits',
-    image: 'https://picsum.photos/400/400?random=4',
+    images: ['https://picsum.photos/400/400?random=4'],
     stock: 50,
+    reviews: [
+      { id: 'r2', userId: 'c2', userName: 'Rahul V.', rating: 4, comment: 'Very pure taste.', date: '2023-10-20' }
+    ]
   },
 ];

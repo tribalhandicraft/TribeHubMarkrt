@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useStore } from '../context/StoreContext';
 import { CATEGORIES } from '../constants';
 import ProductCard from '../components/ProductCard';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Users, Award, MapPin } from 'lucide-react';
 
 // Simple Warli-inspired SVG pattern component
 const WarliDivider = ({ className = "", color = "#ffffff" }: { className?: string; color?: string }) => {
@@ -25,7 +25,7 @@ const WarliDivider = ({ className = "", color = "#ffffff" }: { className?: strin
 };
 
 const Home: React.FC = () => {
-  const { t, language, products } = useStore();
+  const { t, language, products, artisans } = useStore();
   const featuredProducts = products.slice(0, 4);
 
   return (
@@ -48,7 +48,7 @@ const Home: React.FC = () => {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
           <div className="max-w-2xl">
             <div className="inline-block px-3 py-1 border border-tribal-300 rounded-full text-tribal-100 text-sm font-medium mb-4 backdrop-blur-sm">
-                Discover the Spirit of India
+                {t('discoverSpirit')}
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight font-sans">
               {t('heroTitle')}
@@ -67,7 +67,7 @@ const Home: React.FC = () => {
                   to="/shop"
                   className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/30 px-8 py-3 rounded-full font-semibold transition-all"
                 >
-                  Learn More
+                  {t('learnMore')}
                 </Link>
             </div>
           </div>
@@ -85,7 +85,7 @@ const Home: React.FC = () => {
         
         <h2 className="text-2xl font-bold text-gray-800 mb-8 flex items-center gap-2 relative z-10">
           <span className="w-2 h-8 bg-tribal-500 rounded-full block"></span>
-          {language === 'en' ? 'Explore Categories' : (language === 'hi' ? 'श्रेणियाँ खोजें' : 'श्रेण्या एक्सप्लोर करा')}
+          {t('exploreCategories')}
         </h2>
         
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 relative z-10">
@@ -125,10 +125,10 @@ const Home: React.FC = () => {
            <div className="flex justify-between items-end mb-8">
             <h2 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
               <span className="w-2 h-8 bg-tribal-500 rounded-full block"></span>
-              Featured Items
+              {t('featuredItems')}
             </h2>
             <Link to="/shop" className="text-tribal-600 hover:text-tribal-700 font-medium text-sm flex items-center gap-1 group">
-              View All <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              {t('viewAll')} <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </Link>
            </div>
            
@@ -137,6 +137,97 @@ const Home: React.FC = () => {
                 <ProductCard key={p.id} product={p} />
               ))}
            </div>
+        </div>
+      </div>
+
+      {/* Artisans Section */}
+      <div className="bg-tribal-50 py-16 border-t border-tribal-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+           <div className="text-center mb-12">
+             <h2 className="text-3xl font-bold text-gray-900 mb-3 font-serif">{t('meetArtisans')}</h2>
+             <p className="text-gray-600">{t('artisanSubtitle')}</p>
+             <div className="w-24 h-1 bg-tribal-500 mx-auto mt-4 rounded-full"></div>
+           </div>
+
+           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+             {artisans.map(artisan => (
+                <div key={artisan.id} className="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all border border-tribal-100 p-6 flex flex-col items-center text-center group">
+                   <div className="w-24 h-24 rounded-full p-1 border-2 border-tribal-200 group-hover:border-tribal-500 transition-colors mb-4 relative">
+                      <img 
+                        src={artisan.avatar || 'https://via.placeholder.com/150'} 
+                        alt={artisan.name} 
+                        className="w-full h-full rounded-full object-cover"
+                      />
+                   </div>
+                   <h3 className="font-bold text-lg text-gray-800 mb-1">{artisan.name}</h3>
+                   <div className="text-tribal-600 font-medium text-sm mb-2">{artisan.artType}</div>
+                   <div className="flex items-center gap-1 text-gray-500 text-xs">
+                     <MapPin size={12} />
+                     {artisan.location}
+                   </div>
+                </div>
+             ))}
+           </div>
+        </div>
+      </div>
+
+      {/* About Us Section */}
+      <div className="bg-tribal-100 py-20 relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-white to-transparent opacity-50"></div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            
+            {/* Text Content */}
+            <div>
+               <div className="inline-block px-3 py-1 bg-tribal-200 text-tribal-800 rounded-full text-xs font-bold tracking-wider uppercase mb-4">
+                 {t('aboutTitle')}
+               </div>
+               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 font-serif">
+                 {t('aboutSubtitle')}
+               </h2>
+               <p className="text-lg text-gray-700 mb-8 leading-relaxed">
+                 {t('aboutDesc')}
+               </p>
+               
+               <div className="grid grid-cols-2 gap-6">
+                  <div className="bg-white/50 p-4 rounded-xl border border-tribal-200">
+                    <div className="flex items-center gap-2 mb-1">
+                       <Users className="text-tribal-600" size={20} />
+                       <div className="text-2xl font-bold text-tribal-800">500+</div>
+                    </div>
+                    <div className="text-sm text-gray-600 font-medium">{t('artisanCount')}</div>
+                  </div>
+                  <div className="bg-white/50 p-4 rounded-xl border border-tribal-200">
+                    <div className="flex items-center gap-2 mb-1">
+                       <Award className="text-tribal-600" size={20} />
+                       <div className="text-2xl font-bold text-tribal-800">100%</div>
+                    </div>
+                    <div className="text-sm text-gray-600 font-medium">{t('productsCount')}</div>
+                  </div>
+               </div>
+            </div>
+
+            {/* Image/Visual */}
+            <div className="relative">
+              <div className="absolute inset-0 bg-tribal-600 rounded-2xl transform rotate-3 opacity-20"></div>
+              <img 
+                src="https://images.unsplash.com/photo-1606293926075-69a00dbfde81?q=80&w=1000&auto=format&fit=crop" 
+                alt="Artisan working" 
+                className="relative rounded-2xl shadow-xl w-full h-auto object-cover aspect-[4/3]"
+              />
+              <div className="absolute -bottom-6 -left-6 bg-white p-4 rounded-xl shadow-lg max-w-xs hidden lg:block border border-gray-100">
+                <p className="text-sm font-medium text-gray-800 italic">
+                  "{t('testimonialQuote')}"
+                </p>
+                <div className="flex items-center gap-2 mt-3">
+                   <div className="w-8 h-8 bg-tribal-200 rounded-full flex items-center justify-center text-tribal-700 font-bold text-xs">LD</div>
+                   <p className="text-xs text-tribal-600 font-bold">{t('testimonialAuthor')}</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
     </div>

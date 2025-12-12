@@ -3,7 +3,7 @@ import { useStore } from '../context/StoreContext';
 import { CATEGORIES } from '../constants';
 import { Category, Product } from '../types';
 import { generateProductDescription } from '../services/geminiService';
-import { Sparkles, Upload, Package, DollarSign, Type } from 'lucide-react';
+import { Sparkles, Upload, Package, DollarSign, Type, X } from 'lucide-react';
 
 const ProducerDashboard: React.FC = () => {
   const { user, addProduct, products, t, language } = useStore();
@@ -14,7 +14,7 @@ const ProducerDashboard: React.FC = () => {
     price: '',
     category: 'handicrafts' as Category,
     description: '',
-    image: '',
+    images: [] as string[],
     stock: ''
   });
 
@@ -36,16 +36,26 @@ const ProducerDashboard: React.FC = () => {
   };
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      const url = URL.createObjectURL(e.target.files[0]);
-      setFormData(prev => ({ ...prev, image: url }));
+    if (e.target.files) {
+      const newImages: string[] = [];
+      Array.from(e.target.files).forEach((file: File) => {
+          newImages.push(URL.createObjectURL(file));
+      });
+      setFormData(prev => ({ ...prev, images: [...prev.images, ...newImages] }));
     }
+  };
+
+  const removeImage = (index: number) => {
+      setFormData(prev => ({
+          ...prev,
+          images: prev.images.filter((_, i) => i !== index)
+      }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.title || !formData.price || !formData.image) {
-      alert("Please fill in required fields");
+    if (!formData.title || !formData.price || formData.images.length === 0) {
+      alert("Please fill in required fields and upload at least one image.");
       return;
     }
 
@@ -56,8 +66,9 @@ const ProducerDashboard: React.FC = () => {
       description: formData.description,
       price: Number(formData.price),
       category: formData.category,
-      image: formData.image,
+      images: formData.images,
       stock: Number(formData.stock) || 1,
+      reviews: []
     };
 
     addProduct(newProduct);
@@ -67,7 +78,7 @@ const ProducerDashboard: React.FC = () => {
       price: '',
       category: 'handicrafts',
       description: '',
-      image: '',
+      images: [],
       stock: ''
     });
     alert("Product added successfully!");
@@ -77,7 +88,7 @@ const ProducerDashboard: React.FC = () => {
     <div className="min-h-screen bg-tribal-50 py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="text-3xl font-bold text-gray-800 mb-2">{t('dashboard')}</h1>
-        <p className="text-gray-600 mb-8">Welcome back, {user.name} ({user.shopName})</p>
+        <p className="text-gray-600 mb-8">{t('welcomeBackUser')}, {user.name} ({user.shopName})</p>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           
@@ -91,7 +102,7 @@ const ProducerDashboard: React.FC = () => {
               
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Product Title</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">{t('prodTitle')}</label>
                   <div className="relative">
                     <Type className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
                     <input 
@@ -106,7 +117,7 @@ const ProducerDashboard: React.FC = () => {
 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Price (₹)</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">{t('price')}</label>
                     <div className="relative">
                       <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
                       <input 
@@ -119,7 +130,7 @@ const ProducerDashboard: React.FC = () => {
                     </div>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Stock</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">{t('stock')}</label>
                     <input 
                       type="number" 
                       value={formData.stock}
@@ -131,7 +142,7 @@ const ProducerDashboard: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">{t('category')}</label>
                   <select 
                     value={formData.category}
                     onChange={e => setFormData({...formData, category: e.target.value as Category})}
@@ -166,40 +177,43 @@ const ProducerDashboard: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Product Image</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">{t('prodImage')}</label>
                   <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg hover:bg-gray-50 transition-colors relative">
                     <div className="space-y-1 text-center">
-                      {formData.image ? (
-                        <div className="relative">
-                          <img src={formData.image} alt="Preview" className="h-32 mx-auto object-cover rounded" />
-                          <button 
-                            type="button"
-                            onClick={() => setFormData({...formData, image: ''})}
-                            className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 text-xs"
-                          >
-                            ×
-                          </button>
-                        </div>
-                      ) : (
-                        <>
-                          <Upload className="mx-auto h-12 w-12 text-gray-400" />
-                          <div className="flex text-sm text-gray-600 justify-center">
+                        <Upload className="mx-auto h-12 w-12 text-gray-400" />
+                        <div className="flex text-sm text-gray-600 justify-center">
                             <label htmlFor="file-upload" className="relative cursor-pointer bg-white rounded-md font-medium text-tribal-600 hover:text-tribal-500 focus-within:outline-none">
-                              <span>Upload a file</span>
-                              <input id="file-upload" name="file-upload" type="file" className="sr-only" onChange={handleImageUpload} accept="image/*" />
+                                <span>{t('uploadFile')}</span>
+                                <input id="file-upload" name="file-upload" type="file" multiple className="sr-only" onChange={handleImageUpload} accept="image/*" />
                             </label>
-                          </div>
-                        </>
-                      )}
+                        </div>
                     </div>
                   </div>
+                  
+                  {/* Image Previews */}
+                  {formData.images.length > 0 && (
+                      <div className="grid grid-cols-3 gap-2 mt-4">
+                          {formData.images.map((img, idx) => (
+                              <div key={idx} className="relative aspect-square">
+                                  <img src={img} alt="Preview" className="w-full h-full object-cover rounded-md" />
+                                  <button
+                                      type="button"
+                                      onClick={() => removeImage(idx)}
+                                      className="absolute -top-1 -right-1 bg-red-500 text-white rounded-full p-0.5 hover:bg-red-600"
+                                  >
+                                      <X size={12} />
+                                  </button>
+                              </div>
+                          ))}
+                      </div>
+                  )}
                 </div>
 
                 <button 
                   type="submit" 
                   className="w-full bg-tribal-600 text-white py-3 rounded-lg font-semibold hover:bg-tribal-700 transition-colors shadow-lg shadow-tribal-500/30"
                 >
-                  Publish Product
+                  {t('publishProd')}
                 </button>
               </form>
             </div>
@@ -207,18 +221,18 @@ const ProducerDashboard: React.FC = () => {
 
           {/* My Products List */}
           <div className="lg:col-span-2 space-y-6">
-            <h2 className="text-xl font-bold text-gray-800">My Listings ({myProducts.length})</h2>
+            <h2 className="text-xl font-bold text-gray-800">{t('myListings')} ({myProducts.length})</h2>
             {myProducts.length > 0 ? (
                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                  {myProducts.map(p => (
                    <div key={p.id} className="bg-white p-4 rounded-xl border border-gray-100 flex gap-4">
-                     <img src={p.image} alt={p.title} className="w-24 h-24 object-cover rounded-lg bg-gray-100" />
+                     <img src={p.images[0]} alt={p.title} className="w-24 h-24 object-cover rounded-lg bg-gray-100" />
                      <div className="flex-1">
                        <h3 className="font-semibold text-gray-800">{p.title}</h3>
                        <p className="text-sm text-gray-500 line-clamp-2">{p.description}</p>
                        <div className="mt-2 flex items-center justify-between">
                          <span className="font-bold text-tribal-700">₹{p.price}</span>
-                         <span className="text-xs bg-gray-100 px-2 py-1 rounded text-gray-600">Stock: {p.stock}</span>
+                         <span className="text-xs bg-gray-100 px-2 py-1 rounded text-gray-600">{t('stock')}: {p.stock}</span>
                        </div>
                      </div>
                    </div>
@@ -226,7 +240,7 @@ const ProducerDashboard: React.FC = () => {
                </div>
             ) : (
               <div className="text-center py-12 bg-white rounded-xl border border-dashed border-gray-300 text-gray-500">
-                You haven't listed any products yet.
+                {t('noListings')}
               </div>
             )}
           </div>

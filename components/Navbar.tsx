@@ -28,12 +28,16 @@ const Navbar: React.FC = () => {
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center space-x-8">
             <Link to="/" className={isActive('/')}>{t('home')}</Link>
+            <Link to="/about" className={isActive('/about')}>{t('aboutUs')}</Link>
             <Link to="/shop" className={isActive('/shop')}>{t('shop')}</Link>
+            {user?.role === 'customer' && (
+              <Link to="/my-orders" className={isActive('/my-orders')}>{t('myOrders')}</Link>
+            )}
             {user?.role === 'producer' && (
                <Link to="/producer" className={isActive('/producer')}>{t('dashboard')}</Link>
             )}
             {user?.role === 'admin' && (
-               <Link to="/admin" className={isActive('/admin')}>Admin</Link>
+               <Link to="/admin" className={isActive('/admin')}>{t('admin')}</Link>
             )}
           </div>
 
@@ -94,7 +98,11 @@ const Navbar: React.FC = () => {
       {isMenuOpen && (
         <div className="md:hidden bg-white border-b border-gray-100 px-4 py-4 space-y-3">
           <Link to="/" onClick={() => setIsMenuOpen(false)} className="block py-2 text-gray-600">{t('home')}</Link>
+          <Link to="/about" onClick={() => setIsMenuOpen(false)} className="block py-2 text-gray-600">{t('aboutUs')}</Link>
           <Link to="/shop" onClick={() => setIsMenuOpen(false)} className="block py-2 text-gray-600">{t('shop')}</Link>
+          {user?.role === 'customer' && (
+             <Link to="/my-orders" onClick={() => setIsMenuOpen(false)} className="block py-2 text-gray-600">{t('myOrders')}</Link>
+          )}
           {user?.role === 'producer' && (
              <Link to="/producer" onClick={() => setIsMenuOpen(false)} className="block py-2 text-gray-600">{t('dashboard')}</Link>
           )}
