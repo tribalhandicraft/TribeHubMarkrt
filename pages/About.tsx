@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useStore } from '../context/StoreContext';
-import { Mail, Phone, MapPin, Facebook, Instagram, Twitter, Linkedin, Camera, Edit2, Save, X } from 'lucide-react';
+import { Mail, Phone, MapPin, Facebook, Instagram, Twitter, Linkedin, Camera, Edit2, Save, ArrowLeft } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const About: React.FC = () => {
   const { t, user } = useStore();
@@ -110,6 +111,11 @@ const About: React.FC = () => {
 
       {/* Header */}
       <div className="bg-tribal-900 text-white py-20 px-4 text-center relative overflow-hidden">
+        <div className="absolute top-6 left-6 z-20">
+             <Link to="/" className="flex items-center gap-2 text-white/80 hover:text-white transition-colors bg-white/10 px-4 py-2 rounded-full backdrop-blur-sm hover:bg-white/20">
+                 <ArrowLeft size={18} /> <span className="text-sm font-medium">{t('home')}</span>
+             </Link>
+        </div>
         <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/canvas-orange.png')]"></div>
         <h1 className="text-4xl md:text-5xl font-bold relative z-10 font-serif mb-4">{t('aboutUs')}</h1>
         <p className="text-tribal-100 max-w-2xl mx-auto relative z-10 text-lg">
