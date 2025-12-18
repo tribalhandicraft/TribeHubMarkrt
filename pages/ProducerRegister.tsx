@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useStore } from '../context/StoreContext';
 import { useNavigate } from 'react-router-dom';
 import { Upload, User, MapPin, Phone, Palette, ArrowRight, Check } from 'lucide-react';
 import { CATEGORIES } from '../constants';
 
 const ProducerRegister: React.FC = () => {
-  const { login, t } = useStore();
+  const { login, t, language } = useStore();
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -20,16 +20,21 @@ const ProducerRegister: React.FC = () => {
   const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
   const [otherType, setOtherType] = useState('');
 
-  // Combined options from categories + common extras
-  const ART_OPTIONS = [
-    ...CATEGORIES.map(c => c.label['en']),
-    "Pottery",
-    "Weaving",
-    "Jewelry",
-    "Wood Carving",
-    "Metal Work",
-    "Terracotta"
-  ];
+  // Localized extra options
+  const extraOptions: Record<string, { en: string; hi: string; mr: string }> = {
+    pottery: { en: "Pottery", hi: "मिट्टी के बर्तन", mr: "कुंभारकाम" },
+    weaving: { en: "Weaving", hi: "बुनाई", mr: "विणकाम" },
+    jewelry: { en: "Jewelry", hi: "आभूषण", mr: "दागिने" },
+    woodCarving: { en: "Wood Carving", hi: "नक्काशी", mr: "काष्ठकला" },
+    metalWork: { en: "Metal Work", hi: "धातु शिल्प", mr: "धातूकाम" },
+    terracotta: { en: "Terracotta", hi: "टेराकोटा", mr: "टेराकोटा" }
+  };
+
+  // Combined options from categories + local extras, translated to current language
+  const ART_OPTIONS = useMemo(() => [
+    ...CATEGORIES.map(c => c.label[language]),
+    ...Object.values(extraOptions).map(opt => opt[language])
+  ], [language]);
 
   // Sync selected types + other type to formData.artType
   useEffect(() => {

@@ -37,13 +37,13 @@ export const StoreProvider = ({ children }: { children?: ReactNode }) => {
   const [cart, setCart] = useState<CartItem[]>([]);
   const [orders, setOrders] = useState<Order[]>([]);
   
-  // Hardcoded Admin
+  // SINGLE HARDCODED HOST (Pre-configured)
   const adminUser: User = {
-      id: 'admin1',
+      id: 'host1',
       name: 'Super Admin',
       role: 'admin',
-      username: 'tribehadicrafthub.in',
-      password: 'Tribe@123', 
+      username: 'TRIBALARTHUB',
+      password: 'Tribal@123', 
       isVerified: true
   };
 
@@ -105,6 +105,12 @@ export const StoreProvider = ({ children }: { children?: ReactNode }) => {
     };
     
     const newUser = { ...baseUser, ...userData };
+    
+    // Safety check: ensure role is never forced to admin from this path
+    if (newUser.role === 'admin' && newUser.username !== adminUser.username) {
+        newUser.role = 'customer';
+    }
+    
     setUser(newUser);
 
     if (role === 'producer' && isRegistration && !artisans.some(a => a.contact === newUser.contact)) {
@@ -116,7 +122,7 @@ export const StoreProvider = ({ children }: { children?: ReactNode }) => {
   };
 
   const loginWithPassword = (username: string, pass: string): { success: boolean; message?: string } => {
-    // Check Admin
+    // Check Single Host (Admin)
     if (username === adminUser.username && pass === adminUser.password) {
         setUser(adminUser);
         return { success: true };
@@ -139,12 +145,12 @@ export const StoreProvider = ({ children }: { children?: ReactNode }) => {
       const newUser: User = {
           id: `tm-${Date.now()}`,
           name: data.name || 'Team Member',
-          role: 'team_member',
+          role: 'team_member', // STRICT: Cannot register as admin
           username: data.username,
           password: data.password,
           email: data.email,
           contact: data.contact,
-          isVerified: false // Needs admin approval
+          isVerified: false // Needs host approval
       };
       setTeamMembers(prev => [...prev, newUser]);
   };
